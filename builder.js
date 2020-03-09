@@ -1,4 +1,59 @@
-
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+var fs = require('fs')
+var data = [
+    {
+        "src" : "1"
+    },
+    {
+        "src" : "2"
+    },
+    {
+        "src" : "3"
+    },
+    {
+        "src" : "https://cdn.discordapp.com/attachments/585068275021512706/680500245532115129/P1480597.jpg",
+        type : "link"
+    },
+    {
+        "src" : "5"
+    },
+    {
+        "src" : "6",
+        noThumbs : true
+    },
+    {
+        "src" : "7",
+        noThumbs : true
+    },
+    {
+        "src" : "8"
+    },
+    {
+        "src" : "9",
+        noThumbs : true
+    },
+    {
+        "src" : "10"
+    },
+    {
+        "src" : "11"
+    },
+    {
+        "src" : "4"
+    }
+]
+shuffle(data)
+console.log(data)
+var output = `
 <!DOCTYPE HTML>
 <!--
 	Multiverse by HTML5 UP
@@ -30,90 +85,19 @@
                     
                     <div id="main">
 
-
+`
+for(var photo of data){
+    output = output + `
     <article class="thumb">
-    
-    <a href="images/fulls/1.jpg" class="image"><img src=images/thumbs/1.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/4.jpg" class="image"><img src=images/thumbs/4.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/6.jpg" class="image"><img src=images/thumbs/6.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/3.jpg" class="image"><img src=images/thumbs/3.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/5.jpg" class="image"><img src=images/thumbs/5.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/7.jpg" class="image"><img src=images/fulls/7.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/2.jpg" class="image"><img src=images/thumbs/2.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    <a href="https://cdn.discordapp.com/attachments/585068275021512706/680500245532115129/P1480597.jpg" class="image"><img src="https://cdn.discordapp.com/attachments/585068275021512706/680500245532115129/P1480597.jpg" alt="" /></a>
-
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/8.jpg" class="image"><img src=images/thumbs/8.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/9.jpg" class="image"><img src=images/fulls/9.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/11.jpg" class="image"><img src=images/thumbs/11.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article>
-    <article class="thumb">
-    
-    <a href="images/fulls/10.jpg" class="image"><img src=images/thumbs/10.jpg alt="" /></a>
-    
-    <!-- <h2>null</h2> -->
-    <!--<p>null</p> -->
-    </article></div>
+    ${photo.type != "link" ?`
+    <a href="images/fulls/${photo.src}${photo.type != null? "" : ".jpg"}" class="image"><img src=${photo.noThumbs ? `images/fulls/${photo.src}${photo.type != null? "" : ".jpg"}` : `images/thumbs/${photo.src}${photo.type != null? "" : ".jpg"}`} alt="" /></a>
+    `: `<a href="${photo.src}${photo.type != null? "" : ".jpg"}" class="image"><img src="${photo.src}${photo.type != null? "" : ".jpg"}" alt="" /></a>
+`}
+    <!-- <h2>${photo.title ? photo.title : null}</h2> -->
+    <!--<p>${photo.description ? photo.description : null}</p> -->
+    </article>`
+}
+output = output + `</div>
 
 <!-- Footer -->
     <footer id="footer" class="panel">
@@ -176,4 +160,9 @@
 <script src="assets/js/main.js"></script>
 
 </body>
-</html>
+</html>`
+//console.log(output)
+fs.writeFileSync('./index.html',output,function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
