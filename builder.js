@@ -49,6 +49,28 @@ var data = [
     },
     {
         "src" : "4"
+    },
+    {
+        "src" : "https://cdn.discordapp.com/attachments/585068275021512706/621906545877450773/1209-2019-111357168165735984096.png",
+        type : "link"
+    },
+    {
+        "src" : "https://cdn.discordapp.com/attachments/585068275021512706/680500527162851462/P1480625.jpg",
+        type : "link"
+    }, 
+    {
+        "src" : "https://cdn.discordapp.com/attachments/585068275021512706/680502968847564847/P1480653.jpg",
+        type : "link"
+    },
+    {
+        "src" : "P1410836"
+    },
+    {
+        "src" : "P1360224",
+        noThumbs : true
+    },
+    {
+        "src" : "P1020030"
     }
 ]
 shuffle(data)
