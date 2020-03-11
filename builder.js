@@ -99,7 +99,8 @@ var output = `
 					<header id="header">
 						<h1><a href="index.html"><strong>Photography</strong> by <a href="https://cryogenicplanet.tech/" target="_blank" rel="noopener noreferrer">Rahul Tarak</a></a></h1>
 						<nav>
-							<ul>
+                            <ul>
+                                <li><a href="https://cryogenicplanet.tech" target="_blank" rel="noopener noreferrer" class="icon solid fa-home">Home</a></li>
 								<li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
 							</ul>
 						</nav>
